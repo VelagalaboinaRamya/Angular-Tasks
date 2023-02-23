@@ -1,0 +1,104 @@
+<div >
+    <table>
+        <tr>
+            <td>
+                <div class="Wishlist">
+                    <b>Wishlist</b> <br/>
+                    {{wishlistCount}}
+                </div> </td>   
+                <td><div class="Cart">
+                    <b>Cart</b> <br/>
+                    {{cartCount}}
+                </div> 
+            </td><br/>&nbsp;&nbsp;&nbsp;
+            <br/>
+
+            <td>
+                <b>Filter Books By Category</b>&nbsp;
+                
+                    <select #category (change)="getFilterData(category.value)">
+                        <option> Fictional </option>
+                        <option> crime story</option>
+                        <option> literature </option>
+                        <option> Fairy </option>
+                        <option> science fiction </option>
+                        <option> Programming</option>
+                    </select>
+                   
+            
+            </td><br/><br/>&nbsp;&nbsp;
+            <td><b>Filter  By Language</b> &nbsp;
+        
+        <select #language (change)="getFilterData2(language.value)">
+            <option> English </option>
+            <option> French</option>
+            <option> Hindi </option>
+            <option> Korean </option>
+            <option> chinese </option>
+        </select>
+        </td>&nbsp;&nbsp;
+
+        <td><b>Search Book By Rating</b>&nbsp;
+        
+            <select #rating (change)="getFilterData(rating.value)">
+                <option> 1</option>
+                <option> 2 </option>
+                <option> 3 </option>
+                <option> 4 </option>
+                <option>5</option>
+            </select>
+            </td>
+            
+        </tr>
+    </table>
+   
+
+
+</div>
+
+
+
+<hr/>
+<div *ngFor="let b of allBook">
+    <table>
+        <tr>
+            <td> <img src="/assets/images/{{b.imageName}}" alt=" image" width="140px" height="180px"> </td>
+            <td> 
+                <h2>{{b.title}} </h2>
+                <p> {{b.description|shortInfo}} </p>
+                <hr/>
+                 Author : {{b.author}}<br/>
+                 Category : {{b.category}}<br/>
+                 Language : {{b.language}}<br/>
+                 <hr/>
+                 <span>Book Price: Rs. <span [style]="b.price<75?priceLowCss:priceNormalCSS" >{{b.price}}    </span>  
+                <i *ngIf="b.discount>0"> 
+                    with {{b.discount}}% Off 
+                    <span *ngIf="b.discount>9">
+                        <b style="color: blue; font-family: Georgia, 'Times New Roman', Times, serif;"><u> Recommended</u></b>
+                    </span>
+                </i> 
+        
+            </span> 
+                
+                    
+                  
+                
+                 
+                <hr/>
+                <button value="{{b.bookId}}" (click)="goForBuy(book.value)" #book> Buy Book </button>
+                <button value="{{b.bookId}}" (click)="addWishlist(book.value)" #book> Add to Wishlist </button>
+                <br/>
+                <button value="{{b.bookId}}" (click)="viewBookDetails(book.value)" #book> View Details</button>
+                <br/>
+                <button value="{{b.bookId}}" (click)="addCart(book.value)" #book> Add to Cart</button>
+
+                
+                
+                
+            </td>
+            
+        </tr>
+    </table>
+    </div>
+

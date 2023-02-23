@@ -1,0 +1,84 @@
+<div style="margin-left: 15%;width: 10%; height: 100%; margin-bottom: 20%;">
+    <form (ngSubmit)="doFormSubmit()" #requestForm="ngForm">
+        <div class="form-group">
+            <label>Enter BookId</label>
+            <input type="text" [(ngModel)]="b.isbn" class="form-control" id="bisbn" name="bisbn" #isbn="ngModel"
+                required pattern="[0-9][0-9][0-9]">
+            <div *ngIf="isbn.invalid">
+                <span style="color: red;" *ngIf="isbn.errors?.['required']">
+
+                    BookId is required Field
+                </span>
+                <span style="color: red;" *ngIf="isbn.errors?.['pattern']">
+                    BookId is not valid
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" #title="ngModel" pattern="[a-z A-Z]+" [(ngModel)]="b.title" class="form-control"
+                    id="btitle" name="bname" placeholder="exp {like Harry potter }" required>
+                <div *ngIf="title.invalid">
+                    <span style="color: red;" *ngIf="title.errors?.['required']">
+
+                        Book Title is required Field
+                    </span>
+                    <span style="color: red;" *ngIf="title.errors?.['pattern']">
+                        Book Title is not valid
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" #author="ngModel" pattern="[a-z A-Z]+" [(ngModel)]="b.author" class="form-control"
+                    id="bAuthor" name="bauthor" value="Harper Lee">
+                <div *ngIf="author.invalid">
+                    <span style="color: red;" *ngIf="author.errors?.['required']">
+
+                        Book Author is required Field
+                    </span>
+                    <span style="color: red;" *ngIf="author.errors?.['pattern']">
+                        Book Author is not valid
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="text" #quantity="ngModel" required pattern="[0-9]+" [(ngModel)]="b.quantity"
+                    class="form-control" id="bQuantity" name="bQuantity" placeholder="In digits">
+                <div *ngIf="quantity.invalid">
+                    <span style="color: red;" *ngIf="quantity.errors?.['required']">
+
+                        Quantity is required Field
+                    </span>
+                    <span style="color: red;" *ngIf="quantity.errors?.['pattern']">
+                        Quantity is not valid
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" [(ngModel)]="b.email" class="form-control" id="bEmail" name="bEmail"
+                    placeholder="abc@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number </label>
+                <input type="text" [(ngModel)]="b.phoneNumber" class="form-control" id="bPhoneNumber"
+                    name="bPhoneNumber" placeholder="in digits" required>
+            </div>
+
+        </div> 
+        
+        <button type="submit" class="btn btn-primary mb-2" [disabled]="requestForm.form.invalid"  >Add Request</button>
+    </form>
+
+
+
+
+
+    
+</div>
